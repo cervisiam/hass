@@ -102,4 +102,3 @@ group: !include groups.yaml
 automation: !include_dir_list automations/
 scene: !include scenes.yaml
 script: !include scripts.yaml
-secrets: !include secrets.yaml
