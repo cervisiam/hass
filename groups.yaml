@@ -1,0 +1,10 @@
+parents:
+    entities:
+        - device_tracker.iphone_chris
+        - device_tracker.iphone_sherri
+    view: yes
+occupancy:
+    entities:
+        - binary_sensor.lilbee_occupancy
+        - binary_sensor.my_ecobee_occupancy
+    view: yes

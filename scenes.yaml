@@ -1,0 +1,98 @@
+  - name: livingroom_normal
+    entities:
+        light.hue_tv:
+            state: on
+            transition: 2
+            brightness: 255
+            effect: random
+        light.hue_tv_2:
+            state: on
+            transition: 2
+            brightness: 255
+            effect: random        
+        light.iris_tv:
+            state: on
+            transition: 2
+            brightness: 255
+            effect: random        
+  - name: livingroom_dim
+    entities:
+        light.hue_tv:
+            state: on
+            transition: 2
+            brightness: 150
+            effect: random
+        light.hue_tv_2:
+            state: on
+            transition: 5
+            brightness: 200
+            effect: random        
+        light.iris_tv:
+            state: on
+            transition: 10
+            brightness: 175
+            effect: random  
+  - name: turn_off_livingroom
+    entities:
+        light.living_room:
+            state: off
+            transition: 30   
+        light.dining:
+            state: off
+            transition: 30               
+  - name: turn_on_livingroom
+    entities:
+        light.living_room:
+            state: on
+            transition: 2
+            brightness: 255
+            effect: random 
+        light.dining:
+            state: on
+            transition: 30
+            brightness: 255
+            effect: random
+  - name: turn_on_all
+    entities:
+        light.all_hue_lights:
+            state: on
+            transition: 2
+            brightness: 255
+            effect: random              
+  - name: turn_off_all
+    entities:
+        light.all_hue_lights:
+            state: off
+            transition: 600
+  - name: turn_off_bedroom
+    entities:
+        light.bedroom:
+            state: off
+            transition: 30              
+  - name: turn_on_bedroom
+    entities:
+        light.bedroom:
+            state: on
+            transition: 2
+            brightness: 255
+            effect: random
+  - name: turn_on_nightlight
+    entities:
+#        light.living_room:
+#            state: on
+#            transition: 5
+#            brightness: 175
+#            effect: random
+        light.dining:
+            state: on
+            transition: 5
+            brightness: 125
+            effect: random
+  - name: turn_off_nightlight
+    entities:
+#        light.living_room:
+#            state: off
+#            transition: 20
+        light.dining:
+            state: off
+            transition: 20
