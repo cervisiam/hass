@@ -1,0 +1,199 @@
+# Turns on lights if people are home
+  - alias: 'Lights on arrival'
+    trigger:
+      - platform: state
+        entity_id: input_boolean.home
+        from: 'off'
+        to: 'on'
+    condition:
+        condition: or
+        conditions:
+          - condition: and
+            conditions:
+              - condition: state
+                entity_id: input_boolean.parents
+                state: 'on'
+              - condition: time
+                before: '22:00:00'
+          - condition: state
+            entity_id: input_boolean.parents
+            state: 'off'
+    action:
+        service: scene.turn_on
+        entity_id: scene.turn_on_livingroom
+
+# Turn on bedroom lights when Aaron arrives
+  - alias: 'Bedroom lights on for Aaron'
+    trigger:
+        platform: state
+        entity_id: device_tracker.iphone_aaron
+        to: 'home'
+    action:
+        service: scene.turn_on
+        entity_id: scene.turn_on_bedroom
+        
+# Turn off lights when everybody leaves the house
+  - alias: 'Lights off when away'
+    trigger:
+      - platform: state
+        entity_id: input_boolean.home
+        to: 'off'
+    action:
+        service: scene.turn_on
+        entity_id: scene.turn_off_all  
+
+# Turn on night lights when parents not here, motion in living room
+  - alias: "Night lights, no parents"
+    trigger:
+        platform: state
+        entity_id: group.occupancy
+        to: "on"
+    condition:
+        condition: and
+        conditions:
+          - condition: state
+            entity_id: input_boolean.parents
+            state: 'off'
+          - condition: state
+            entity_id: group.all_lights
+            state: 'off'
+          - condition: state
+            entity_id: input_boolean.home
+            state: 'on'
+    action:
+        service: scene.turn_on
+        entity_id: scene.turn_on_nightlight
+
+# Turn off nightlight after 10 minutes of no detection
+  - alias: "Night lights turn off, no parents"
+    trigger:
+        platform: state
+        entity_id: group.occupancy
+        to: "off"
+        for:
+            minutes: 10
+    condition:
+        condition: and
+        conditions:
+          - condition: state
+            entity_id: input_boolean.parents
+            state: 'off'
+          - condition: state
+            entity_id: group.dining
+            state: 'on'
+          - condition: state
+            entity_id: input_boolean.home
+            state: 'on'
+    action:
+        service: scene.turn_on
+        entity_id: scene.turn_off_nightlight
+
+# Turn off lights when parents here
+  - alias: "Turn off lights when parents here at 10PM"
+    trigger:
+        platform: time
+        at: '22:00:00'
+    condition:
+        condition: and
+        conditions:
+          - condition: state
+            entity_id: light.living_room
+            state: 'on'
+          - condition: state
+            entity_id: input_boolean.parents
+            state: 'on'
+    action:
+        service: scene.turn_on
+        entity_id: scene.turn_off_livingroom 
+        
+# Turn off all lights at 3AM Daily
+  - alias: "Turn off lights at 3AM"
+    trigger:
+        platform: time
+        at: '03:00:00'
+    action:
+        service: scene.turn_on
+        entity_id: scene.turn_off_all
+
+# Turn off bedroom at 2AM T-F
+  - alias: "Turn off bedroom lamp T-F"
+    trigger:
+      - platform: time
+        at: '02:00:00'
+    condition:
+      - condition: time
+        weekday:
+          - tue
+          - wed
+          - thu
+          - fri
+    action:
+        service: scene.turn_on
+        entity_id: scene.turn_off_bedroom
+
+# Turn off bedroom at 10:30 Friday
+  - alias: "Turn off bedroom lamp Friday"
+    trigger:
+      - platform: time
+        at: '22:30:00'
+    condition:
+      - condition: time
+        weekday: fri
+    action:
+        service: scene.turn_on
+        entity_id: scene.turn_off_bedroom
+
+# Turn on bedroom lamp to wake up        
+  - alias: "Turn on bedroom lamp in the morning T-F"
+    trigger:
+        platform: time
+        at: '10:00:00'
+    condition:
+        condition: time
+        weekday:
+          - tue
+          - wed
+          - thu
+          - fri
+    action:
+        service: scene.turn_on
+        entity_id: scene.turn_on_bedroom
+  - alias: "Turn on bedroom lamp Saturday morning"
+    trigger:
+        platform: time
+        at: '07:00:00'
+    condition:
+        condition: time
+        weekday: sat
+    action:
+        service: scene.turn_on
+        entity_id: scene.turn_on_all
+        
+# Turn off bedroom when Aaron leaves
+  - alias: "Turn off bedroom when Aaron leaves"
+    trigger:
+        platform: state
+        entity_id: device_tracker.iphone_aaron
+        to: 'not_home'
+    action:
+        service: scene.turn_on
+        entity_id: scene.turn_off_bedroom
+        
+# Turn on lights when home, and nighttime
+  - alias: "Lights on when home, on sundown"
+    trigger:
+        platform: sun
+        event: sunset
+        offset: "-00:45:00"
+    condition:
+        condition: and
+        conditions:
+          - condition: state
+            entity_id: input_boolean.home
+            state: 'on'
+          - condition: state
+            entity_id: group.all_lights
+            state: 'off'
+    action:
+        service: scene.turn_on
+        entity_id: scene.turn_on_all        

@@ -1,0 +1,77 @@
+# Set occupied on Homeassistant start
+  - alias: 'Home Assistant home variable on start'
+    trigger:
+        platform: homeassistant
+        event: start
+    condition:
+        condition: state
+        entity_id: group.all_devices
+        state: 'home'
+    action:
+        service: input_boolean.turn_on
+        entity_id: input_boolean.home
+        
+# Parents on Homeassistant start
+  - alias: 'Home Assistant parents variable on start'
+    trigger:
+        platform: homeassistant
+        event: start
+    condition:
+        condition: state
+        entity_id: group.parents
+        state: 'home'
+    action:
+        service: input_boolean.turn_on
+        entity_id: input_boolean.parents
+
+# Someone home, set home variable
+  - alias: 'Home occupied'
+    trigger:
+      - platform: state
+        entity_id: device_tracker.iphone_aaron
+        to: 'home'
+      - platform: state
+        entity_id: device_tracker.iphone_shawn
+        to: 'home'
+      - platform: state
+        entity_id: device_tracker.iphone_chris
+        to: 'home'
+      - platform: state
+        entity_id: device_tracker.iphone_sherri
+        to: 'home'
+    action:
+        service: input_boolean.turn_on
+        entity_id: input_boolean.home
+
+# Everyone gone, set home variable
+  - alias: 'Home empty'
+    trigger:
+      - platform: state
+        entity_id: group.all_devices
+        to: 'not_home'
+    action:
+        service: input_boolean.turn_off
+        entity_id: input_boolean.home
+
+# Parents here, set parents variable
+  - alias: 'Parents home'
+    trigger:
+      - platform: state
+        entity_id: device_tracker.iphone_chris
+        to: 'home'
+      - platform: state
+        entity_id: device_tracker.iphone_sherri
+        to: 'home'
+    action:
+        service: input_boolean.turn_on
+        entity_id: input_boolean.parents
+
+# Parents gone, set parents variable
+  - alias: "Parents gone"
+    trigger:
+       - platform: state
+         entity_id: group.parents
+         to: 'not_home'
+    action:
+        service: input_boolean.turn_off
+        entity_id: input_boolean.parents
