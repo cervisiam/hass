@@ -99,10 +99,6 @@ media_player:
     name: "ONKYO TX-NR636"
 
 group: !include groups.yaml
-automation: !include_dir_* automations/
+automation: !include_dir_merge_list automations/
 scene: !include scenes.yaml
-<<<<<<< HEAD
 script: !include scripts.yaml
-=======
-script: !include scripts.yaml
->>>>>>> e857db41e73e79db6327fdb7095139df8df6184b
