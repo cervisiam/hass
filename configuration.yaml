@@ -86,6 +86,7 @@ device_tracker:
     password: !secret unifi_password
     consider_home: 180
     track_new_devices: yes
+    interval_seconds: 5
 # Text to speech
 tts:
     platform: google
@@ -98,9 +99,6 @@ media_player:
     name: "ONKYO TX-NR636"
 
 group: !include groups.yaml
-automation: !include automations.yaml
+automation: !include_dir_list automations/
 scene: !include scenes.yaml
-#automation: !include_dir_merge_list automation/
-#scene: !include_dir_merge_list scene/
 script: !include scripts.yaml
-
