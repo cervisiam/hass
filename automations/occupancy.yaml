@@ -10,7 +10,7 @@
     action:
         service: input_boolean.turn_on
         entity_id: input_boolean.home
-        
+
 # Parents on Homeassistant start
   - alias: 'Home Assistant parents variable on start'
     trigger:

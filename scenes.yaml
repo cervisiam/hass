@@ -9,12 +9,12 @@
             state: on
             transition: 2
             brightness: 255
-            effect: random        
+            effect: random
         light.iris_tv:
             state: on
             transition: 2
             brightness: 255
-            effect: random        
+            effect: random
   - name: livingroom_dim
     entities:
         light.hue_tv:
@@ -26,27 +26,27 @@
             state: on
             transition: 5
             brightness: 200
-            effect: random        
+            effect: random
         light.iris_tv:
             state: on
             transition: 10
             brightness: 175
-            effect: random  
+            effect: random
   - name: turn_off_livingroom
     entities:
         light.living_room:
             state: off
-            transition: 30   
+            transition: 30
         light.dining:
             state: off
-            transition: 30               
+            transition: 30
   - name: turn_on_livingroom
     entities:
         light.living_room:
             state: on
             transition: 2
             brightness: 255
-            effect: random 
+            effect: random
         light.dining:
             state: on
             transition: 30
@@ -58,7 +58,7 @@
             state: on
             transition: 2
             brightness: 255
-            effect: random              
+            effect: random
   - name: turn_off_all
     entities:
         light.all_hue_lights:
@@ -68,7 +68,7 @@
     entities:
         light.bedroom:
             state: off
-            transition: 30              
+            transition: 30
   - name: turn_on_bedroom
     entities:
         light.bedroom:

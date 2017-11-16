@@ -31,7 +31,7 @@
     action:
         service: scene.turn_on
         entity_id: scene.turn_on_bedroom
-        
+
 # Turn off lights when everybody leaves the house
   - alias: 'Lights off when away'
     trigger:
@@ -40,7 +40,7 @@
         to: 'off'
     action:
         service: scene.turn_on
-        entity_id: scene.turn_off_all  
+        entity_id: scene.turn_off_all
 
 # Turn on night lights when parents not here, motion in living room
   - alias: "Night lights, no parents"
@@ -104,8 +104,8 @@
             state: 'on'
     action:
         service: scene.turn_on
-        entity_id: scene.turn_off_livingroom 
-        
+        entity_id: scene.turn_off_livingroom
+
 # Turn off all lights at 3AM Daily
   - alias: "Turn off lights at 3AM"
     trigger:
@@ -143,7 +143,7 @@
         service: scene.turn_on
         entity_id: scene.turn_off_bedroom
 
-# Turn on bedroom lamp to wake up        
+# Turn on bedroom lamp to wake up
   - alias: "Turn on bedroom lamp in the morning T-F"
     trigger:
         platform: time
@@ -168,7 +168,7 @@
     action:
         service: scene.turn_on
         entity_id: scene.turn_on_all
-        
+
 # Turn off bedroom when Aaron leaves
   - alias: "Turn off bedroom when Aaron leaves"
     trigger:
@@ -178,7 +178,7 @@
     action:
         service: scene.turn_on
         entity_id: scene.turn_off_bedroom
-        
+
 # Turn on lights when home, and nighttime
   - alias: "Lights on when home, on sundown"
     trigger:
@@ -196,4 +196,4 @@
             state: 'off'
     action:
         service: scene.turn_on
-        entity_id: scene.turn_on_all        
+        entity_id: scene.turn_on_all

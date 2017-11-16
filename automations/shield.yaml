@@ -1,4 +1,4 @@
-# Shield lights      
+# Shield lights
   - alias: "Media player paused/stopped"
     trigger:
       - platform: state
@@ -47,4 +47,4 @@
             state: 'on'
     action:
         service: scene.turn_on
-        entity_id: scene.livingroom_dim  
+        entity_id: scene.livingroom_dim

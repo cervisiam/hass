@@ -67,7 +67,7 @@ input_boolean:
     parents:
         name: "Parents Home"
         initial: off
-  
+
 # Philips hue
 light:
     platform: hue
@@ -95,7 +95,7 @@ tts:
 media_player:
   - platform: plex
     scan_interval: 5
-  - platform: onkyo  
+  - platform: onkyo
     name: "ONKYO TX-NR636"
 
 group: !include groups.yaml

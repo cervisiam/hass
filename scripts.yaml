@@ -1,11 +1,11 @@
-	nightlight:
-		alias: Night Light
-		sequence:
-		  -	alias: Turn on Nightlight
-			service: scene.turn_on
-			entity_id: scene.turn_on_nightlight
-		  -	delay:
-				minutes: 10
-		  -	alias: Turn off Nightlight
-			service: scene.turn_on
-			entity_id: scene.turn_off_nightlight
+    nightlight:
+        alias: Night Light
+        sequence:
+          - alias: Turn on Nightlight
+            service: scene.turn_on
+            entity_id: scene.turn_on_nightlight
+          - delay:
+                minutes: 10
+          - alias: Turn off Nightlight
+            service: scene.turn_on
+            entity_id: scene.turn_off_nightlight
