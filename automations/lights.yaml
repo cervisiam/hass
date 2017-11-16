@@ -61,32 +61,32 @@
             entity_id: input_boolean.home
             state: 'on'
     action:
-        service: scene.turn_on
-        entity_id: scene.turn_on_nightlight
+        service: script.turn_on
+        entity_id: script.nightlight
 
 # Turn off nightlight after 10 minutes of no detection
-  - alias: "Night lights turn off, no parents"
-    trigger:
-        platform: state
-        entity_id: group.occupancy
-        to: "off"
-        for:
-            minutes: 10
-    condition:
-        condition: and
-        conditions:
-          - condition: state
-            entity_id: input_boolean.parents
-            state: 'off'
-          - condition: state
-            entity_id: group.dining
-            state: 'on'
-          - condition: state
-            entity_id: input_boolean.home
-            state: 'on'
-    action:
-        service: scene.turn_on
-        entity_id: scene.turn_off_nightlight
+#  - alias: "Night lights turn off, no parents"
+#    trigger:
+#        platform: state
+#        entity_id: group.occupancy
+#        to: "off"
+#        for:
+#			minutes: 10
+#    condition:
+#        condition: and
+#        conditions:
+#          - condition: state
+#            entity_id: input_boolean.parents
+#            state: 'off'
+#          - condition: state
+#            entity_id: group.dining
+#            state: 'on'
+#          - condition: state
+#            entity_id: input_boolean.home
+#            state: 'on'
+#    action:
+#        service: scene.turn_on
+#        entity_id: scene.turn_off_nightlight
 
 # Turn off lights when parents here
   - alias: "Turn off lights when parents here at 10PM"
