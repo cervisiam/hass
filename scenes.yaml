@@ -40,6 +40,14 @@
         light.dining:
             state: off
             transition: 30
+  - name: turn_off_livingroom_fast
+    entities:
+        light.living_room:
+            state: off
+            transition: 2
+        light.dining:
+            state: off
+            transition: 2
   - name: turn_on_livingroom
     entities:
         light.living_room:
