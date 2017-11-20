@@ -28,8 +28,8 @@
       - platform: state
         entity_id: media_player.shield_android_tv
         to: 'playing'
-        condition:
-          - condition: or
+    condition:
+      - condition: or
             conditions:
               - condition: and
                 conditions:
