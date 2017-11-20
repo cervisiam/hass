@@ -67,6 +67,9 @@ input_boolean:
     parents:
         name: "Parents Home"
         initial: off
+    horror:
+        name: "Horror"
+        initial: off
 
 # Philips hue
 light:
