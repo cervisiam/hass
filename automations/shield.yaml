@@ -49,7 +49,7 @@
             state: 'on'  
     action:
         service: scene.turn_on
-        entity_id: scene.livingroom_off        
+        entity_id: scene.turn_off_livingroom       
   - alias: "Media player playing"
     trigger:
       - platform: state
