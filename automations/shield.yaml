@@ -1,4 +1,5 @@
 # Shield lights
+# Player Paused
   - alias: "Media player paused/stopped"
     trigger:
       - platform: state
@@ -13,16 +14,14 @@
                 entity_id: input_boolean.parents
                 state: 'on'
               - condition: time
-                before: '22:00:00'
+                before: '22:00:00'  
           - condition: state
             entity_id: input_boolean.parents
-            state: 'off'
-          - condition: state
-            entity_id: light.living_room
-            state: 'on'
+            state: 'off'    
     action:
         service: scene.turn_on
         entity_id: scene.livingroom_normal
+# Playing during horror movie
   - alias: "Media player playing horror movie"
     trigger:
       - platform: state
@@ -30,33 +29,6 @@
         to: 'playing'
     condition:
       - condition: or
-            conditions:
-              - condition: and
-                conditions:
-              - condition: state
-                entity_id: input_boolean.parents
-                state: 'on'
-              - condition: time
-                before: '22:00:00'
-          - condition: state
-            entity_id: input_boolean.parents
-            state: 'off'
-          - condition: state
-            entity_id: light.living_room
-            state: 'on'
-          - condition: state
-            entity_id: input_boolean.horror
-            state: 'on'  
-    action:
-        service: scene.turn_on
-        entity_id: scene.turn_off_livingroom       
-  - alias: "Media player playing"
-    trigger:
-      - platform: state
-        entity_id: media_player.shield_android_tv
-        to: 'playing'    
-    condition:
-        condition: or
         conditions:
           - condition: and
             conditions:
@@ -65,15 +37,56 @@
                 state: 'on'
               - condition: time
                 before: '22:00:00'
-          - condition: state
-            entity_id: input_boolean.parents
-            state: 'off'
-          - condition: state
-            entity_id: light.living_room
-            state: 'on'
-          - condition: state
-            entity_id: input_boolean.horror
-            state: 'off'
+              - condition: state
+                entity_id: input_boolean.horror
+                state: 'on'
+          - condition: and
+            conditions:
+              - condition: state
+                entity_id: input_boolean.parents
+                state: 'off'
+              - condition: state
+                entity_id: input_boolean.horror
+                state: 'on'
+              - condition: state
+                entity_id: light.living_room
+                state: 'on'
+    action:
+        service: scene.turn_on
+        entity_id: scene.turn_off_livingroom       
+# Playing during regular movie
+  - alias: "Media player playing"
+    trigger:
+      - platform: state
+        entity_id: media_player.shield_android_tv
+        to: 'playing'    
+    condition:
+      - condition: or
+        conditions:
+          - condition: and
+            conditions:
+              - condition: state
+                entity_id: input_boolean.parents
+                state: 'on'
+              - condition: time
+                before: '22:00:00'
+              - condition: state
+                entity_id: input_boolean.horror
+                state: 'off'
+              - condition: state
+                entity_id: light.living_room
+                state: 'on'
+          - condition: and
+            conditions:
+              - condition: state
+                entity_id: input_boolean.parents
+                state: 'off'
+              - condition: state
+                entity_id: input_boolean.horror
+                state: 'off'
+              - condition: state
+                entity_id: light.living_room
+                state: 'on'
     action:
         service: scene.turn_on
         entity_id: scene.livingroom_dim
