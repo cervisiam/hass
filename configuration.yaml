@@ -100,6 +100,8 @@ media_player:
     scan_interval: 5
   - platform: onkyo
     name: "ONKYO TX-NR636"
+  - platform: emby
+    api_key: !secret emby_api
 
 group: !include groups.yaml
 automation: !include_dir_merge_list automations/
